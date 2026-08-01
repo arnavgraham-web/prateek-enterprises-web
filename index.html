@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prateek Enterprises — Bharat Gas Domestic &amp; Commercial LPG Distributor, Bengaluru</title>
+    <meta
+      name="description"
+      content="Prateek Enterprises is an authorised Bharat Gas distributor in OMBR Layout, Banaswadi, Bengaluru — supplying domestic and commercial LPG cylinders to homes, kitchens, hospitals and corporate campuses across the city."
+    />
+    <link rel="icon" type="image/jpeg" href="/images/showroom.jpg" />
+
+    <!--
+      Netlify Forms detection.
+      Netlify scans the DEPLOYED HTML at build time to register forms. Because this is a
+      Vite SPA, React-rendered forms are invisible to that scan — so each form is declared
+      once here as a hidden static copy. The `name` and every input `name` must stay in
+      sync with the React components:
+        - "request-a-call"  -> src/components/RequestCallForm.tsx
+        - "get-in-touch"    -> src/components/Footer.tsx
+      Adding a field in React means adding it here too, or Netlify will drop it.
+    -->
+    <form name="request-a-call" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="zip" />
+    </form>
+    <form name="get-in-touch" netlify netlify-honeypot="bot-field" hidden>
+      <input type="email" name="email" />
+    </form>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

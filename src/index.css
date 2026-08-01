@@ -1,0 +1,283 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Bharat Gas brand palette — blue + yellow, taken from the cylinder/truck livery */
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dbe7ff;
+  --color-brand-200: #bed3ff;
+  --color-brand-300: #91b5ff;
+  --color-brand-400: #5d8dff;
+  --color-brand-500: #3766f5;
+  --color-brand-600: #2352e3;
+  --color-brand-700: #1b41c4;
+  --color-brand-800: #1c389e;
+  --color-brand-900: #1c347d;
+
+  --color-flame-400: #ffd83d;
+  --color-flame-500: #ffc60a;
+  --color-flame-600: #e5a800;
+
+  --color-ink-900: #0f1115;
+  --color-ink-800: #17191f;
+  --color-ink-700: #23262e;
+  --color-ink-500: #5c626e;
+  --color-ink-400: #858b97;
+  --color-ink-200: #e4e6eb;
+  --color-ink-100: #f2f3f6;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Sticky header is 72px; keep anchored sections clear of it */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-white text-ink-800 font-sans antialiased;
+  }
+
+  /* The clientele marquee track is wider than the viewport by design. It is
+     clipped by its own wrapper, but this keeps it from inflating the page box
+     on narrow screens. `clip` (not `hidden`) avoids creating a scroll container,
+     which would break the sticky header and #anchor scrolling. */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  ::selection {
+    @apply bg-brand-600 text-white;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Micro-animations
+   Every motion rule below is disabled wholesale by the prefers-reduced-motion
+   block at the bottom of this file. Keep new keyframes above it.
+   --------------------------------------------------------------------------- */
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-28px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    transform: translate3d(28px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes reveal-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    /* The track renders the logo list twice; -50% lands exactly on the seam */
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes flame-flicker {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.82;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.7);
+  }
+}
+
+/* Hero backdrop: fade in, then drift slowly outward so the banner never sits still */
+@keyframes hero-zoom {
+  0% {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+  35% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+}
+
+/* Draws the hand-underline SVG beneath "Bharat Gas" in the H1 */
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -180% 0;
+  }
+  to {
+    background-position: 180% 0;
+  }
+}
+
+/* Scroll reveal: elements start hidden and animate once useInView adds .is-visible */
+.reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.reveal.is-visible {
+  animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal-left.is-visible {
+  animation-name: reveal-left;
+}
+
+.reveal-right.is-visible {
+  animation-name: reveal-right;
+}
+
+.reveal-scale.is-visible {
+  animation-name: reveal-scale;
+}
+
+.hero-zoom {
+  animation: hero-zoom 9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.animate-flame {
+  animation: flame-flicker 2.4s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Sweeping highlight used on primary buttons */
+.shimmer-on-hover {
+  background-image: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgb(255 255 255 / 0.22) 42%,
+    transparent 64%
+  );
+  background-size: 220% 100%;
+  background-position: -180% 0;
+}
+
+.shimmer-on-hover:hover {
+  animation: shimmer 0.9s ease-out;
+}
+
+/* Underline that grows from the left on hover — nav and footer links */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1.5px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    animation: none !important;
+  }
+
+  .marquee-track,
+  .animate-flame,
+  .animate-pulse-ring,
+  .shimmer-on-hover:hover {
+    animation: none !important;
+  }
+
+  /* The hero image animates its own opacity in, so it needs the end state pinned */
+  .hero-zoom {
+    animation: none !important;
+    opacity: 0.7;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
