@@ -1,42 +1,54 @@
 import { Building2 } from 'lucide-react'
 import { Reveal } from './Reveal'
 import { SectionLabel } from './SectionLabel'
-import { clients } from '../data/site'
+import { clients, type Client } from '../data/site'
 
-/** Initials used as a stand-in logo mark until real client logos are supplied. */
-function initials(name: string) {
-  return name
-    .replace(/[^\p{L}\p{N} ]/gu, '')
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((word) => word[0]?.toUpperCase())
-    .join('')
-}
-
-function ClientCard({ name, sector }: { name: string; sector: string }) {
+/**
+ * One tile on the wall. Renders the real logo when we have one, and a wordmark
+ * tile when we don't — both at the same size, so a partial logo set still reads
+ * as a deliberate design rather than a broken grid.
+ *
+ * Logos sit greyscale at rest and come to full colour on hover, which stops a
+ * dozen unrelated brand palettes from fighting each other.
+ */
+function ClientCard({ name, sector, logo, invert }: Client) {
   return (
-    <div className="group flex w-72 shrink-0 items-center gap-3.5 rounded-2xl border border-ink-200 bg-white px-4 py-3.5 transition-all duration-400 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg hover:shadow-brand-900/8">
-      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-sm font-bold tracking-tight text-brand-700 transition-all duration-400 group-hover:bg-brand-600 group-hover:text-white">
-        {initials(name)}
-      </span>
-      <span className="min-w-0">
-        {/* Long names (e.g. the hospital) wrap to two lines rather than truncating */}
-        <span className="block text-sm font-semibold leading-snug text-ink-900" title={name}>
+    <div className="group flex h-[104px] w-72 shrink-0 flex-col items-center justify-center gap-2.5 rounded-2xl border border-ink-200 bg-white px-5 py-4 transition-all duration-400 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg hover:shadow-brand-900/8">
+      {logo ? (
+        /* Fixed box + object-contain: very wide marks (East Point is ~10:1) fill the
+           width, squarer marks fill the height, and every tile stays the same size. */
+        <img
+          src={logo}
+          alt={`${name} logo`}
+          loading="lazy"
+          className={`h-11 w-[204px] object-contain grayscale transition-all duration-500 group-hover:grayscale-0 ${
+            invert ? 'invert' : ''
+          }`}
+        />
+      ) : (
+        <span
+          className="line-clamp-2 text-center text-[15px] font-bold leading-tight tracking-tight text-ink-500 transition-colors duration-400 group-hover:text-brand-700"
+          title={name}
+        >
           {name}
         </span>
-        <span className="block text-[11px] font-medium uppercase tracking-wider text-ink-400">
-          {sector}
-        </span>
+      )}
+
+      <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-400">
+        {sector}
       </span>
     </div>
   )
 }
 
 export function Clientele() {
-  // The marquee track renders the list twice so the -50% translate loops seamlessly.
-  const half = Math.ceil(clients.length / 2)
-  const rows = [clients.slice(0, half), clients.slice(half)]
+  // Alternate entries between the two rows so logo tiles and wordmark tiles stay
+  // mixed — a straight split would stack every logo in one row.
+  // The marquee track renders each row twice so the -50% translate loops seamlessly.
+  const rows = [
+    clients.filter((_, i) => i % 2 === 0),
+    clients.filter((_, i) => i % 2 === 1),
+  ]
 
   return (
     <section id="clients" className="overflow-hidden border-y border-ink-200 bg-ink-100/60 py-20 sm:py-28">
@@ -68,7 +80,7 @@ export function Clientele() {
               }}
             >
               {[...row, ...row].map((client, i) => (
-                <ClientCard key={`${client.name}-${i}`} name={client.name} sector={client.sector} />
+                <ClientCard key={`${client.name}-${i}`} {...client} />
               ))}
             </div>
           </div>

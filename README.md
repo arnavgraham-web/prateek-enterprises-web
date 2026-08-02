@@ -25,6 +25,19 @@ Two things are deliberately unfinished and marked in the code:
    supply-request documents. Confirm each account is willing to be named publicly before
    launch, and trim the list as needed. The section renders whatever is in that array.
 
+   Five entries carry a real logo (`public/images/clients/`). The other seven render as
+   wordmark tiles and each has a `logoNote` in the data explaining why no logo was
+   sourced — mostly local businesses with no web presence. Three notes need your input:
+
+   - **Fidelity** — two separate companies trade under that name (Fidelity Investments
+     and Fidelity International) and both have Bengaluru offices. Which is the client?
+   - **Chanakya** — no Bengaluru business confirmed; needs a locality to identify.
+   - **Hot Smoke Deli** — no listing anywhere; the trade name may be recorded differently.
+
+   For the rest, asking the clients for their logo files directly will be faster than
+   more searching. Drop a file into `public/images/clients/` and add a `logo:` path to
+   that entry; the tile switches from wordmark to logo automatically.
+
 Other content worth reviewing: the `stats` numbers (years in business, account count) in
 `src/data/site.ts` are estimates and should be corrected to the real figures.
 

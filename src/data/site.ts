@@ -112,24 +112,75 @@ export const testimonials = [
 ] as const
 
 /**
- * CURRENT CLIENTELE — user to verify/trim before launch.
+ * CURRENT CLIENTELE — verify/trim before launch.
  * Names taken from the supply-request documents in ~/Downloads/Prateek.
  * Confirm each account is happy to be named publicly before this goes live.
+ *
+ * `logo` is optional. Entries without one fall back to a wordmark tile, so the
+ * wall stays consistent whether or not artwork exists — see Clientele.tsx.
+ * `invert` is for logos supplied as white-on-transparent, which would otherwise
+ * be invisible on the section's light background.
  */
-export const clients = [
-  { name: 'Foxconn', sector: 'Manufacturing' },
-  { name: 'Société Générale', sector: 'Corporate' },
-  { name: 'Fidelity', sector: 'Corporate' },
-  { name: 'Jayadev Memorial Rashtrotthana Hospital', sector: 'Healthcare' },
-  { name: 'East Point', sector: 'Education' },
-  { name: 'Chanakya', sector: 'Hospitality' },
-  { name: 'Farmle Foods', sector: 'Food Processing' },
-  { name: 'POPO Ventures', sector: 'Hospitality' },
-  { name: 'Foodsta Kitchens', sector: 'Cloud Kitchen' },
-  { name: 'Gigu Hospitality', sector: 'Hospitality' },
-  { name: 'Hot Smoke Deli', sector: 'Restaurant' },
-  { name: 'Udupi Upachar', sector: 'Restaurant' },
-] as const
+export type Client = {
+  name: string
+  sector: string
+  logo?: string
+  invert?: boolean
+  /** Why no logo — kept in the data so the gap is visible, not silently forgotten. */
+  logoNote?: string
+}
+
+export const clients: Client[] = [
+  { name: 'Foxconn', sector: 'Manufacturing', logo: '/images/clients/foxconn.svg' },
+  {
+    name: 'Société Générale',
+    sector: 'Corporate',
+    logo: '/images/clients/societe-generale.svg',
+  },
+  {
+    name: 'Jayadev Memorial Rashtrotthana Hospital',
+    sector: 'Healthcare',
+    logo: '/images/clients/rashtrotthana.png',
+  },
+  {
+    name: 'East Point',
+    sector: 'Education',
+    logo: '/images/clients/east-point.png',
+    // Supplied as a white knockout; inverted to read on the light section
+    invert: true,
+  },
+  { name: 'Foodsta Kitchens', sector: 'Cloud Kitchen', logo: '/images/clients/foodsta.png' },
+
+  /* --- No logo sourced. Each renders as a wordmark tile until artwork is supplied. --- */
+  {
+    name: 'Fidelity',
+    sector: 'Corporate',
+    logoNote:
+      'Deliberately omitted. Two separate companies trade as Fidelity — Fidelity Investments (US) and Fidelity International — and both have large Bengaluru offices, so the account needs identifying first. The only Wikipedia file for Fidelity Investments is non-free/fair-use, which does not cover use on a commercial site; request the asset from their brand team instead.',
+  },
+  {
+    name: 'Chanakya',
+    sector: 'Hospitality',
+    logoNote: 'No Bengaluru business confirmed — every "Chanakya" hotel found is in another city. Needs a locality to disambiguate.',
+  },
+  { name: 'Farmle Foods', sector: 'Food Processing', logoNote: 'No web presence found, including company registries.' },
+  {
+    name: 'POPO Ventures',
+    sector: 'Hospitality',
+    logoNote: 'Company confirmed (Jayanagar); parent of The Pizza Bakery and Smash Guys. Corporate domain is mail-only, so no logo is reachable.',
+  },
+  {
+    name: 'Gigu Hospitality',
+    sector: 'Hospitality',
+    logoNote: 'Company confirmed (Koramangala), the entity behind Gilly\'s Restobar. Their sites are an empty SPA and a broken cert. Note gillysrestobar.in is now a squatted domain — do not pull assets from it.',
+  },
+  { name: 'Hot Smoke Deli', sector: 'Restaurant', logoNote: 'No listing on any aggregator. Name may be shortened or misrecorded — confirm the trade name.' },
+  {
+    name: 'Udupi Upachar',
+    sector: 'Restaurant',
+    logoNote: 'Real chain with ~10 outlets but exists only on Zomato/Swiggy, no own domain. Note: Udupi Upahar is a different chain.',
+  },
+]
 
 export const faqs = [
   {
