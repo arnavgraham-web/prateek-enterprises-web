@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Menu, Phone, X } from 'lucide-react'
 import { Logo } from './Logo'
+import { BpclBadge } from './BpclBadge'
 import { business, navLinks } from '../data/site'
 
 export function Navbar() {
@@ -36,7 +37,10 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 sm:px-8">
         {/* The lockup carries its own yellow ground, so it reads on both the
             transparent hero header and the solid scrolled one. */}
-        <Logo />
+        <div className="flex items-center gap-2.5">
+          <Logo />
+          <BpclBadge />
+        </div>
 
         <ul className="hidden items-center gap-8 lg:flex">
           {navLinks.map((link) => (
