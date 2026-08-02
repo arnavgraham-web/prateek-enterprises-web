@@ -124,7 +124,7 @@ export function RequestCallForm() {
               title="Commercial supply enquiry on WhatsApp"
               className="group flex h-[42px] shrink-0 items-center justify-center gap-2 rounded-lg border border-ink-200 bg-white/90 px-4 text-sm font-semibold text-ink-900 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#25D366]/40 hover:bg-white hover:shadow-lg active:translate-y-0"
             >
-              <WhatsAppIcon className="h-5 w-5 transition-transform duration-500 group-hover:scale-110" />
+              <WhatsAppIcon className="h-7 w-7 transition-transform duration-500 group-hover:scale-110" />
               <span className="lg:hidden">WhatsApp</span>
             </button>
           )}
