@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { HelpCircle, MessageCircle, Phone, Plus } from 'lucide-react'
+import { HelpCircle, Phone, Plus } from 'lucide-react'
 import { Reveal } from './Reveal'
 import { SectionLabel } from './SectionLabel'
+import { WhatsAppIcon } from './WhatsAppIcon'
 import { business, faqs } from '../data/site'
 import { COMMERCIAL_INTRO, whatsappHref } from '../lib/contact'
 
@@ -128,9 +129,9 @@ export function Faq() {
                       href={helpHref}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1EBE5A] hover:shadow-lg hover:shadow-[#25D366]/25"
+                      className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink-900 transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-100 hover:shadow-lg"
                     >
-                      <MessageCircle className="h-4 w-4" strokeWidth={2.3} />
+                      <WhatsAppIcon className="h-5 w-5" />
                       WhatsApp
                     </a>
                   )}

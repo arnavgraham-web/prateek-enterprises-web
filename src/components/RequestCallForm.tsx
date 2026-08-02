@@ -1,8 +1,9 @@
 import { useRef, useState, type FormEvent } from 'react'
-import { ArrowRight, Check, Loader2, MessageCircle } from 'lucide-react'
+import { ArrowRight, Check, Loader2 } from 'lucide-react'
 import { isDev, submitToNetlify } from '../lib/netlify'
 import { enquiryMessage, whatsappHref } from '../lib/contact'
 import { business } from '../data/site'
+import { WhatsAppIcon } from './WhatsAppIcon'
 
 type Status = 'idle' | 'sending' | 'done' | 'error'
 
@@ -121,12 +122,9 @@ export function RequestCallForm() {
               type="button"
               onClick={openWhatsApp}
               title="Commercial supply enquiry on WhatsApp"
-              className="group flex h-[42px] shrink-0 items-center justify-center gap-2 rounded-lg bg-[#25D366] px-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1EBE5A] hover:shadow-lg hover:shadow-[#25D366]/30 active:translate-y-0"
+              className="group flex h-[42px] shrink-0 items-center justify-center gap-2 rounded-lg border border-ink-200 bg-white/90 px-4 text-sm font-semibold text-ink-900 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#25D366]/40 hover:bg-white hover:shadow-lg active:translate-y-0"
             >
-              <MessageCircle
-                className="h-4 w-4 transition-transform duration-500 group-hover:scale-110"
-                strokeWidth={2.3}
-              />
+              <WhatsAppIcon className="h-5 w-5 transition-transform duration-500 group-hover:scale-110" />
               <span className="lg:hidden">WhatsApp</span>
             </button>
           )}

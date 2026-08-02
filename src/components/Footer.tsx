@@ -1,7 +1,8 @@
 import { useState, type FormEvent } from 'react'
-import { Check, Loader2, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react'
+import { Check, Loader2, Mail, MapPin, Phone, Send } from 'lucide-react'
 import { Logo } from './Logo'
 import { Reveal } from './Reveal'
+import { WhatsAppIcon } from './WhatsAppIcon'
 import { business, navLinks } from '../data/site'
 import { isDev, submitToNetlify } from '../lib/netlify'
 import { COMMERCIAL_INTRO, whatsappHref } from '../lib/contact'
@@ -156,7 +157,7 @@ export function Footer() {
                 </span>
               </li>
               <li className="flex gap-3">
-                <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#25D366]" strokeWidth={2.2} />
+                <WhatsAppIcon className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>
                   {whatsappCommercial ? (
                     <a
