@@ -1,28 +1,33 @@
-import { Flame } from 'lucide-react'
+/**
+ * Brand lockup: blue wordmark on yellow, over a blue "official distributer" bar.
+ *
+ * Rebuilt as markup rather than a raster asset so it stays crisp at nav size and
+ * on retina. Both strings are reproduced exactly as they appear on the supplied
+ * artwork — note "Enterprise" (singular) and "DISTRIBUTER", which differ from the
+ * "Prateek Enterprises" / "distributor" spelling used in the page copy.
+ */
+export function Logo({ size = 'sm' }: { size?: 'sm' | 'lg' }) {
+  const scale = size === 'lg' ? 'text-xl sm:text-2xl' : 'text-base'
+  const barText = size === 'lg' ? 'text-[10px]' : 'text-[7px]'
 
-/** Wordmark + flame glyph. `light` renders for dark backgrounds (hero, footer). */
-export function Logo({ light = false }: { light?: boolean }) {
   return (
     <a
       href="#top"
-      className="group flex items-center gap-2.5 transition-transform duration-300 hover:-translate-y-0.5"
-      aria-label="Prateek Enterprises — home"
+      aria-label="Prateek Enterprise — official Bharat Gas distributer — home"
+      className="group inline-block overflow-hidden rounded-md transition-transform duration-300 hover:-translate-y-0.5"
     >
-      <span className="relative grid h-9 w-9 place-items-center rounded-lg bg-brand-600 shadow-sm transition-colors duration-300 group-hover:bg-brand-700">
-        <Flame className="h-5 w-5 text-flame-500 animate-flame" strokeWidth={2.4} />
-      </span>
-      <span className="leading-tight">
+      <span className="block bg-brand-yellow px-3 pb-1 pt-1.5">
         <span
-          className={`block text-[15px] font-bold tracking-tight ${light ? 'text-white' : 'text-ink-900'}`}
+          className={`block font-extrabold leading-none tracking-tight text-brand-blue ${scale}`}
         >
-          Prateek Enterprises
+          Prateek Enterprise
         </span>
+      </span>
+      <span className="block bg-brand-blue px-3 py-1">
         <span
-          className={`block text-[10px] font-medium uppercase tracking-[0.14em] ${
-            light ? 'text-white/60' : 'text-ink-400'
-          }`}
+          className={`block text-center font-bold uppercase leading-none tracking-[0.18em] text-white ${barText}`}
         >
-          Bharat Gas Distributor
+          Official Distributer
         </span>
       </span>
     </a>

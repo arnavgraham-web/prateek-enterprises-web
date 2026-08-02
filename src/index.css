@@ -13,6 +13,10 @@
   --color-brand-800: #1c389e;
   --color-brand-900: #1c347d;
 
+  /* Exact lockup colours from the supplied logo artwork */
+  --color-brand-yellow: #ffd400;
+  --color-brand-blue: #0c6cbe;
+
   --color-flame-400: #ffd83d;
   --color-flame-500: #ffc60a;
   --color-flame-600: #e5a800;

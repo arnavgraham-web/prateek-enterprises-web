@@ -1,4 +1,4 @@
-import { MapPin, Star } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import { RequestCallForm } from './RequestCallForm'
 import { business } from '../data/site'
 
@@ -16,20 +16,6 @@ export function Hero() {
 
       <div className="mx-auto max-w-7xl px-5 pb-10 pt-32 sm:px-8 sm:pb-14 sm:pt-40 lg:pt-48">
         <div className="max-w-3xl">
-          <div className="mb-6 flex flex-wrap items-center gap-2.5 [animation:reveal-up_0.7s_cubic-bezier(0.22,1,0.36,1)_0.1s_both]">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-medium text-white/85 ring-1 ring-white/15 backdrop-blur">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-flame-500 animate-pulse-ring" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-flame-500" />
-              </span>
-              Authorised {business.parent} distributor
-            </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-medium text-white/85 ring-1 ring-white/15 backdrop-blur">
-              <Star className="h-3.5 w-3.5 fill-flame-500 text-flame-500" />
-              {business.rating.score} · {business.rating.count} Google reviews
-            </span>
-          </div>
-
           <h1 className="text-4xl font-bold leading-[1.08] tracking-tight text-white [animation:reveal-up_0.8s_cubic-bezier(0.22,1,0.36,1)_0.18s_both] sm:text-5xl lg:text-6xl">
             Your Trusted{' '}
             <span className="relative whitespace-nowrap text-flame-500">

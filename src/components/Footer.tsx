@@ -99,7 +99,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
           <Reveal>
-            <Logo light />
+            <Logo size="lg" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/50">
               Fast, reliable and fully authorised domestic &amp; commercial LPG distribution.
               An official {business.brand} dealer serving Bengaluru.

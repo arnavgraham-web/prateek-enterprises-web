@@ -34,7 +34,9 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 sm:px-8">
-        <Logo light={!solid} />
+        {/* The lockup carries its own yellow ground, so it reads on both the
+            transparent hero header and the solid scrolled one. */}
+        <Logo />
 
         <ul className="hidden items-center gap-8 lg:flex">
           {navLinks.map((link) => (

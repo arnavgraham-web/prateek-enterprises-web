@@ -62,7 +62,7 @@ export function RequestCallForm() {
       data-netlify="true"
       netlify-honeypot="bot-field"
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-white/10 bg-ink-900/85 p-4 shadow-2xl backdrop-blur-xl sm:p-5"
+      className="rounded-2xl border border-white/60 bg-white/95 p-4 shadow-2xl shadow-black/25 backdrop-blur-xl sm:p-5"
     >
       <input type="hidden" name="form-name" value="request-a-call" />
       <p className="hidden">
@@ -74,7 +74,7 @@ export function RequestCallForm() {
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[repeat(4,minmax(0,1fr))_auto]">
         {fields.map((field) => (
           <label key={field.name} className="group block">
-            <span className="mb-1.5 block text-[11px] font-medium uppercase tracking-wider text-white/45 transition-colors duration-300 group-focus-within:text-flame-500">
+            <span className="mb-1.5 block text-[11px] font-medium uppercase tracking-wider text-ink-400 transition-colors duration-300 group-focus-within:text-brand-600">
               {field.label}
             </span>
             <input
@@ -83,7 +83,7 @@ export function RequestCallForm() {
               required
               autoComplete={field.autoComplete}
               placeholder={field.placeholder}
-              className="w-full rounded-lg border border-white/12 bg-white/[0.06] px-3.5 py-2.5 text-sm text-white placeholder:text-white/30 transition-all duration-300 hover:border-white/25 focus:border-flame-500 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-flame-500/25"
+              className="w-full rounded-lg border border-ink-200 bg-ink-100/70 px-3.5 py-2.5 text-sm text-ink-900 placeholder:text-ink-400 transition-all duration-300 hover:border-ink-400 focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-600/20"
             />
           </label>
         ))}
@@ -92,7 +92,7 @@ export function RequestCallForm() {
           <button
             type="submit"
             disabled={status === 'sending' || status === 'done'}
-            className="shimmer-on-hover group flex h-[42px] w-full items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-semibold text-ink-900 transition-all duration-300 hover:-translate-y-0.5 hover:bg-flame-500 hover:shadow-lg hover:shadow-flame-500/25 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-70 lg:w-auto"
+            className="shimmer-on-hover group flex h-[42px] w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-6 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-lg hover:shadow-brand-600/30 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-70 lg:w-auto"
           >
             {status === 'sending' && <Loader2 className="h-4 w-4 animate-spin" />}
             {status === 'done' && <Check className="h-4 w-4" />}
@@ -112,7 +112,7 @@ export function RequestCallForm() {
       <p
         aria-live="polite"
         className={`mt-3 text-[11px] leading-relaxed transition-colors duration-300 ${
-          status === 'error' ? 'text-red-300' : 'text-white/35'
+          status === 'error' ? 'text-red-600' : 'text-ink-400'
         }`}
       >
         {status === 'done'
