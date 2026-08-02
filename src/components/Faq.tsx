@@ -23,10 +23,10 @@ export function Faq() {
 
             <Reveal direction="left" delay={120} className="group overflow-hidden rounded-2xl">
               <img
-                src="/images/truck-ub-city.jpg"
-                alt="A Prateek Enterprises Bharat Gas truck on a commercial delivery run in Bengaluru"
+                src="/images/truck-ub-city-portrait.jpg"
+                alt="A Prateek Enterprises Bharat Gas truck parked outside UB City, Bengaluru"
                 loading="lazy"
-                className="h-64 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 sm:h-80"
+                className="h-64 w-full object-cover object-[center_65%] transition-transform duration-700 ease-out group-hover:scale-105 sm:h-80"
               />
             </Reveal>
           </div>
