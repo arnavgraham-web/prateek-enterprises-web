@@ -13,7 +13,10 @@ export function Faq() {
     <section id="faq" className="border-y border-ink-200 bg-ink-100/60">
       <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-14">
-          <div className="space-y-8">
+          {/* flex column + flex-1 on the image below: the right column's FAQ
+              list sets the row height, and the image stretches to match it
+              instead of leaving blank space under a fixed-height crop. */}
+          <div className="flex flex-col gap-8">
             <Reveal direction="left">
               <SectionLabel icon={HelpCircle}>Questions &amp; Answers</SectionLabel>
               <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-ink-900 sm:text-4xl">
@@ -21,12 +24,21 @@ export function Faq() {
               </h2>
             </Reveal>
 
-            <Reveal direction="left" delay={120} className="group overflow-hidden rounded-2xl">
+            {/* Fixed height below lg — the columns stack, so there's no row to
+                match and h-full would otherwise fall back to the image's raw
+                aspect ratio at full width (~600px, too tall for mobile). At lg
+                the grid puts this beside the FAQ list, so it switches to
+                flex-1 and stretches to that row's height instead. */}
+            <Reveal
+              direction="left"
+              delay={120}
+              className="group h-64 overflow-hidden rounded-2xl sm:h-80 lg:h-auto lg:min-h-64 lg:flex-1"
+            >
               <img
                 src="/images/truck-ub-city-portrait.jpg"
                 alt="A Prateek Enterprises Bharat Gas truck parked outside UB City, Bengaluru"
                 loading="lazy"
-                className="h-64 w-full object-cover object-[center_65%] transition-transform duration-700 ease-out group-hover:scale-105 sm:h-80"
+                className="h-full w-full object-cover object-[center_65%] transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </Reveal>
           </div>

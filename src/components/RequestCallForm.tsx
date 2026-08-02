@@ -84,7 +84,7 @@ export function RequestCallForm() {
       data-netlify="true"
       netlify-honeypot="bot-field"
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-white/60 bg-white/95 p-4 shadow-2xl shadow-black/25 backdrop-blur-xl sm:p-5"
+      className="rounded-2xl border border-white/40 bg-white/70 p-4 shadow-2xl shadow-black/25 backdrop-blur-xl sm:p-5"
     >
       <input type="hidden" name="form-name" value="request-a-call" />
       <p className="hidden">
