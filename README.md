@@ -114,3 +114,4 @@ disabled under `prefers-reduced-motion: reduce`.
 
 `public/images/` — re-encoded to JPEG and capped at 1920px (about 3.8 MB total). The
 originals were ~24 MB of PNGs. Re-optimise any new artwork before committing it.
+# prateek-enterprises-web
