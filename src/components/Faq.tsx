@@ -24,21 +24,33 @@ export function Faq() {
               </h2>
             </Reveal>
 
-            {/* Fixed height below lg — the columns stack, so there's no row to
-                match and h-full would otherwise fall back to the image's raw
-                aspect ratio at full width (~600px, too tall for mobile). At lg
-                the grid puts this beside the FAQ list, so it switches to
-                flex-1 and stretches to that row's height instead. */}
+            {/*
+              Fixed height below lg — the columns stack, so there's no row to
+              match. At lg the grid puts this beside the FAQ list and it
+              switches to flex-1 to stretch across that row.
+
+              The image is `absolute inset-0` rather than a normal block child.
+              A non-absolute img's h-full falls back to its own aspect ratio
+              whenever the flex-grow container's height is still being
+              measured (the grid's intrinsic/max-content sizing pass) — and
+              that fallback size then gets baked into the row height itself,
+              so the row grows to fit the PHOTO instead of the FAQ list next
+              to it. That only went unnoticed at one specific viewport width
+              where the two happened to coincide. Taking the image out of flow
+              removes it from that sizing pass entirely: the wrapper's height
+              comes solely from the grid row (set by the FAQ column), and the
+              image just fills whatever that turns out to be.
+            */}
             <Reveal
               direction="left"
               delay={120}
-              className="group h-64 overflow-hidden rounded-2xl sm:h-80 lg:h-auto lg:min-h-64 lg:flex-1"
+              className="group relative h-64 overflow-hidden rounded-2xl sm:h-80 lg:h-auto lg:flex-1"
             >
               <img
                 src="/images/truck-ub-city-portrait.jpg"
                 alt="A Prateek Enterprises Bharat Gas truck parked outside UB City, Bengaluru"
                 loading="lazy"
-                className="h-full w-full object-cover object-[center_65%] transition-transform duration-700 ease-out group-hover:scale-105"
+                className="absolute inset-0 h-full w-full object-cover object-[center_65%] transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </Reveal>
           </div>
