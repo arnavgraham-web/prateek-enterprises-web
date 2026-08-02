@@ -2,6 +2,7 @@ import { Building2 } from 'lucide-react'
 import { Reveal } from './Reveal'
 import { SectionLabel } from './SectionLabel'
 import { clients, type Client } from '../data/site'
+import { whatsappHref } from '../lib/contact'
 
 /**
  * One tile on the wall. Renders the real logo when we have one, and a wordmark
@@ -50,6 +51,12 @@ export function Clientele() {
     clients.filter((_, i) => i % 2 === 1),
   ]
 
+  // This section is aimed squarely at commercial prospects, so its CTA goes
+  // straight to WhatsApp. Falls back to the footer form if no number is set.
+  const planHref = whatsappHref(
+    'Hi Prateek Enterprises, we run a commercial kitchen/campus and would like a customised LPG supply plan.',
+  )
+
   return (
     <section id="clients" className="overflow-hidden border-y border-ink-200 bg-ink-100/60 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -92,12 +99,15 @@ export function Clientele() {
           <p className="text-sm text-ink-500">
             Supplying a multi-site kitchen or campus?{' '}
             <a
-              href="#contact"
+              href={planHref ?? '#contact'}
+              {...(planHref ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
               className="link-underline font-semibold text-brand-600 hover:text-brand-700"
             >
               Ask us for a customised supply plan
-            </a>
-            .
+            </a>{' '}
+            <span className="text-ink-400">
+              — commercial enquiries reach us fastest on WhatsApp.
+            </span>
           </p>
         </Reveal>
       </div>

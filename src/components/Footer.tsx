@@ -1,9 +1,10 @@
 import { useState, type FormEvent } from 'react'
-import { Check, Loader2, MapPin, Phone, Send } from 'lucide-react'
+import { Check, Loader2, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react'
 import { Logo } from './Logo'
 import { Reveal } from './Reveal'
 import { business, navLinks } from '../data/site'
 import { isDev, submitToNetlify } from '../lib/netlify'
+import { COMMERCIAL_INTRO, whatsappHref } from '../lib/contact'
 
 type Status = 'idle' | 'sending' | 'done' | 'error'
 
@@ -94,6 +95,8 @@ function GetInTouchForm() {
 }
 
 export function Footer() {
+  const whatsappCommercial = whatsappHref(COMMERCIAL_INTRO)
+
   return (
     <footer id="contact" className="bg-ink-900 text-white">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
@@ -143,8 +146,39 @@ export function Footer() {
               </li>
               <li className="flex gap-3">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-flame-500" strokeWidth={2.2} />
-                <a href={business.phoneHref} className="link-underline hover:text-white">
-                  {business.phone}
+                <span>
+                  <a href={business.phoneHref} className="link-underline hover:text-white">
+                    {business.phone}
+                  </a>
+                  <span className="mt-0.5 block text-xs text-white/35">
+                    Refills, connections &amp; bookings
+                  </span>
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#25D366]" strokeWidth={2.2} />
+                <span>
+                  {whatsappCommercial ? (
+                    <a
+                      href={whatsappCommercial}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="link-underline hover:text-white"
+                    >
+                      {business.whatsappDisplay}
+                    </a>
+                  ) : (
+                    business.whatsappDisplay
+                  )}
+                  <span className="mt-0.5 block text-xs text-white/35">
+                    WhatsApp — commercial supply
+                  </span>
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-flame-500" strokeWidth={2.2} />
+                <a href={business.emailHref} className="link-underline break-all hover:text-white">
+                  {business.email}
                 </a>
               </li>
             </ul>

@@ -2,6 +2,7 @@ import { useRef, useState, type FormEvent } from 'react'
 import { ArrowRight, Check, Loader2, MessageCircle } from 'lucide-react'
 import { isDev, submitToNetlify } from '../lib/netlify'
 import { enquiryMessage, whatsappHref } from '../lib/contact'
+import { business } from '../data/site'
 
 type Status = 'idle' | 'sending' | 'done' | 'error'
 
@@ -115,7 +116,7 @@ export function RequestCallForm() {
             <button
               type="button"
               onClick={openWhatsApp}
-              title="Send this enquiry on WhatsApp"
+              title="Commercial supply enquiry on WhatsApp"
               className="group flex h-[42px] shrink-0 items-center justify-center gap-2 rounded-lg bg-[#25D366] px-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1EBE5A] hover:shadow-lg hover:shadow-[#25D366]/30 active:translate-y-0"
             >
               <MessageCircle
@@ -155,8 +156,8 @@ export function RequestCallForm() {
         {status === 'done'
           ? 'Thanks — we have your details and will call you back shortly.'
           : status === 'error'
-            ? 'Something went wrong sending that. Please call us instead on 080 4205 2762.'
-            : 'By submitting your contact details, you agree to be contacted by Prateek Enterprises about your Bharat Gas enquiry.'}
+            ? `Something went wrong sending that. Please call us instead on ${business.phone}.`
+            : `By submitting your contact details, you agree to be contacted by ${business.name} about your Bharat Gas enquiry. Running a restaurant, kitchen or campus? The green button opens WhatsApp for commercial supply.`}
       </p>
     </form>
   )

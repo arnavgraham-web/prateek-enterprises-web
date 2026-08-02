@@ -9,19 +9,23 @@ export const business = {
   tagline: 'Cook Food. Serve Love.',
   brand: 'Bharat Gas',
   parent: 'Bharat Petroleum',
+  /**
+   * Contact routing is deliberate — do not collapse these into one channel.
+   *
+   *   phone     landline. Calls and refill bookings, domestic and existing accounts.
+   *   whatsapp  mobile. New commercial/bulk supply enquiries only.
+   *   email     general written enquiries, and where Netlify form notifications go.
+   *
+   * Copy alongside each CTA should make the split obvious so a household booking a
+   * refill doesn't land in the commercial WhatsApp queue, and vice versa.
+   */
   phone: '080 4205 2762',
   phoneHref: 'tel:+918042052762',
-  /**
-   * WHATSAPP NUMBER NOT SUPPLIED — set this before launch.
-   *
-   * The listed number above is a Bengaluru landline and cannot receive WhatsApp,
-   * so it cannot be reused here. Put the team's mobile in international format:
-   * country code + number, digits only, no "+" or spaces. e.g. '919876543210'.
-   *
-   * While this is empty, every WhatsApp button is hidden rather than rendering a
-   * dead link — see `whatsappHref` in src/lib/contact.ts.
-   */
-  whatsapp: '',
+  /** International format, digits only — consumed by wa.me links. */
+  whatsapp: '919448289856',
+  whatsappDisplay: '+91 94482 89856',
+  email: 'prateekgas@gmail.com',
+  emailHref: 'mailto:prateekgas@gmail.com',
   /* Bharat Gas national helpline (Urja WhatsApp booking) — printed on the showroom hoarding */
   helpline: '1800 22 4344',
   address: {
@@ -189,7 +193,7 @@ export const faqs = [
   },
   {
     q: 'How do I book a Bharat Gas refill?',
-    a: `Call us on ${business.phone}, or use the Bharat Gas Urja WhatsApp service — say "Hi" on ${business.helpline} to book and pay for a cylinder, check prices, or update your mobile number.`,
+    a: `Call the showroom on ${business.phone} — that landline handles all refill bookings and new connections. You can also use the Bharat Gas Urja WhatsApp service: say "Hi" on ${business.helpline} to book and pay for a cylinder, check prices, or update your mobile number.`,
   },
   {
     q: 'What do I need for a new domestic connection?',
@@ -197,11 +201,11 @@ export const faqs = [
   },
   {
     q: 'Do you supply commercial 19kg cylinders to restaurants?',
-    a: 'Yes. Commercial 19kg and 47.5kg cylinders are our core business — we already supply restaurants, cloud kitchens, hotels, hospital canteens and corporate cafeterias across Bengaluru on scheduled refill cycles.',
+    a: `Yes. Commercial 19kg and 47.5kg cylinders are our core business — we already supply restaurants, cloud kitchens, hotels, hospital canteens and corporate cafeterias across Bengaluru on scheduled refill cycles. New commercial accounts reach us fastest on WhatsApp at ${business.whatsappDisplay}.`,
   },
   {
     q: 'Can you set up a fixed delivery schedule for our kitchen?',
-    a: 'We can. Share your average weekly consumption and we will build a refill cycle with a buffer cylinder on site, fixed delivery windows that avoid your service hours, and consolidated monthly billing.',
+    a: `We can. Share your average weekly consumption and we will build a refill cycle with a buffer cylinder on site, fixed delivery windows that avoid your service hours, and consolidated monthly billing. Message ${business.whatsappDisplay} on WhatsApp or email ${business.email} to get started.`,
   },
   {
     q: 'What are your showroom timings?',

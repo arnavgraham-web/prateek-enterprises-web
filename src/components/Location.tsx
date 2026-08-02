@@ -1,4 +1,4 @@
-import { Clock, MapPin, Navigation, Phone } from 'lucide-react'
+import { Clock, Mail, MapPin, Navigation, Phone } from 'lucide-react'
 import { Reveal } from './Reveal'
 import { SectionLabel } from './SectionLabel'
 import { business } from '../data/site'
@@ -61,8 +61,19 @@ export function Location() {
                 </li>
                 <li className="flex gap-3 text-ink-500">
                   <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" strokeWidth={2.2} />
-                  <a href={business.phoneHref} className="link-underline hover:text-brand-600">
-                    {business.phone}
+                  <span>
+                    <a href={business.phoneHref} className="link-underline hover:text-brand-600">
+                      {business.phone}
+                    </a>
+                    <span className="mt-0.5 block text-xs text-ink-400">
+                      Refills, connections &amp; bookings
+                    </span>
+                  </span>
+                </li>
+                <li className="flex gap-3 text-ink-500">
+                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" strokeWidth={2.2} />
+                  <a href={business.emailHref} className="link-underline hover:text-brand-600">
+                    {business.email}
                   </a>
                 </li>
               </ul>

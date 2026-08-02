@@ -69,20 +69,31 @@ Two things to know before launch:
 - **The free tier caps at 100 submissions/month.** Past that Netlify rejects submissions
   rather than queueing them.
 
-### WhatsApp
+## Contact routing
 
-Set `business.whatsapp` in [`src/data/site.ts`](src/data/site.ts) to the team's **mobile**
-number in international format, digits only (e.g. `919876543210`). The listed landline
-cannot receive WhatsApp, so it cannot be reused.
+Three channels, deliberately separated. Keep the split when editing copy — the point is
+that a household booking a refill never lands in the commercial queue, and a prospective
+restaurant account never waits on a landline.
 
-Until that field is filled in, every WhatsApp affordance — the button in the enquiry form,
-the one in the FAQ "Need more help?" card, and the floating action button — is hidden
-rather than rendering a dead link. Fill it in and all three appear.
+| Channel | Number / address | Used for |
+|---|---|---|
+| Landline | 080 4205 2762 | Calls, refill bookings, new domestic connections |
+| WhatsApp | +91 94482 89856 | **New commercial / bulk supply enquiries only** |
+| Email | prateekgas@gmail.com | Written enquiries, and Netlify form notifications |
 
-The enquiry-form button composes a message from whatever the visitor has typed, skipping
-blank fields, and opens WhatsApp in a new tab. It does not submit to Netlify, so a visitor
-who uses WhatsApp will not appear in the dashboard — that is intentional, since the
-conversation itself becomes the record.
+All three live in `business` in [`src/data/site.ts`](src/data/site.ts).
+
+WhatsApp appears in four places — the enquiry form, the FAQ "Need more help?" card, the
+clientele section CTA, and a floating button that fades in past the hero. Every one opens
+with a message that says the enquiry is commercial, so the inbox stays sortable. Each is
+hidden automatically if `business.whatsapp` is ever cleared, rather than rendering a dead
+`wa.me` link.
+
+The enquiry-form WhatsApp button composes from whatever the visitor has typed, skipping
+blank fields. It does not also submit to Netlify, so a visitor who chooses WhatsApp will
+not appear in the dashboard — the conversation itself becomes the record.
+
+Set the Netlify form notifications (see above) to **prateekgas@gmail.com**.
 
 Running `npm run dev` has no Netlify backend, so the POST 404s. The handler treats that as
 success in dev and logs the payload to the console instead — see `src/lib/netlify.ts`.

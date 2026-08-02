@@ -3,13 +3,11 @@ import { HelpCircle, MessageCircle, Phone, Plus } from 'lucide-react'
 import { Reveal } from './Reveal'
 import { SectionLabel } from './SectionLabel'
 import { business, faqs } from '../data/site'
-import { whatsappHref } from '../lib/contact'
+import { COMMERCIAL_INTRO, whatsappHref } from '../lib/contact'
 
 export function Faq() {
   const [open, setOpen] = useState(0)
-  const helpHref = whatsappHref(
-    'Hi Prateek Enterprises, I have a question about your LPG supply.',
-  )
+  const helpHref = whatsappHref(COMMERCIAL_INTRO)
 
   return (
     <section id="faq" className="border-y border-ink-200 bg-ink-100/60">
@@ -85,8 +83,8 @@ export function Faq() {
 
                 <h3 className="relative text-lg font-semibold text-white">Need more help?</h3>
                 <p className="relative mx-auto mt-2 max-w-sm text-sm leading-relaxed text-white/55">
-                  Call us for supply enquiries, new connections or partnership requests — we are
-                  happy to assist.
+                  Call the showroom for refills, new connections and bookings. For commercial
+                  or bulk supply, message us on WhatsApp.
                 </p>
 
                 <div className="relative mt-5 flex flex-wrap items-center justify-center gap-2.5">

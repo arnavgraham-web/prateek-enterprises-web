@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { MessageCircle } from 'lucide-react'
-import { whatsappHref } from '../lib/contact'
+import { COMMERCIAL_INTRO, whatsappHref } from '../lib/contact'
 
 /**
  * Floating WhatsApp button. Appears once the visitor scrolls past the hero, so it
@@ -11,7 +11,7 @@ import { whatsappHref } from '../lib/contact'
  */
 export function WhatsAppFab() {
   const [shown, setShown] = useState(false)
-  const href = whatsappHref('Hi Prateek Enterprises, I would like to enquire about LPG supply.')
+  const href = whatsappHref(COMMERCIAL_INTRO)
 
   useEffect(() => {
     if (!href) return
@@ -29,7 +29,8 @@ export function WhatsAppFab() {
       href={href}
       target="_blank"
       rel="noreferrer noopener"
-      aria-label="Chat with us on WhatsApp"
+      aria-label="Commercial LPG supply enquiry on WhatsApp"
+      title="Commercial supply enquiry"
       className={`group fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-xl shadow-black/20 transition-all duration-500 hover:bg-[#1EBE5A] hover:shadow-2xl ${
         shown ? 'translate-y-0 scale-100 opacity-100' : 'pointer-events-none translate-y-4 scale-90 opacity-0'
       }`}

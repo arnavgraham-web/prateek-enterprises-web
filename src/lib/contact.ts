@@ -13,10 +13,18 @@ export function whatsappHref(message: string): string | null {
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`
 }
 
+/**
+ * WhatsApp is the channel for new commercial accounts, so every message opens by
+ * saying so — it keeps the queue readable and stops domestic refill requests, which
+ * belong on the landline, from arriving here unlabelled.
+ */
+export const COMMERCIAL_INTRO =
+  'Hi Prateek Enterprises, I would like to enquire about commercial LPG supply.'
+
 /** Message for the hero enquiry form, built from whatever the visitor filled in. */
 export function enquiryMessage(fields: Record<string, string>) {
   const lines = [
-    'Hi Prateek Enterprises, I would like to enquire about an LPG connection.',
+    COMMERCIAL_INTRO,
     '',
     fields.name && `Name: ${fields.name}`,
     fields.phone && `Phone: ${fields.phone}`,
