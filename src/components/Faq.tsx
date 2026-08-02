@@ -1,11 +1,15 @@
 import { useState } from 'react'
-import { HelpCircle, Phone, Plus } from 'lucide-react'
+import { HelpCircle, MessageCircle, Phone, Plus } from 'lucide-react'
 import { Reveal } from './Reveal'
 import { SectionLabel } from './SectionLabel'
 import { business, faqs } from '../data/site'
+import { whatsappHref } from '../lib/contact'
 
 export function Faq() {
   const [open, setOpen] = useState(0)
+  const helpHref = whatsappHref(
+    'Hi Prateek Enterprises, I have a question about your LPG supply.',
+  )
 
   return (
     <section id="faq" className="border-y border-ink-200 bg-ink-100/60">
@@ -85,13 +89,30 @@ export function Faq() {
                   happy to assist.
                 </p>
 
-                <a
-                  href={business.phoneHref}
-                  className="shimmer-on-hover relative mt-5 inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-flame-500 hover:text-ink-900 hover:shadow-lg hover:shadow-flame-500/25"
-                >
-                  <Phone className="h-4 w-4 transition-transform duration-500 group-hover:rotate-12" strokeWidth={2.3} />
-                  {business.phone}
-                </a>
+                <div className="relative mt-5 flex flex-wrap items-center justify-center gap-2.5">
+                  <a
+                    href={business.phoneHref}
+                    className="shimmer-on-hover inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-flame-500 hover:text-ink-900 hover:shadow-lg hover:shadow-flame-500/25"
+                  >
+                    <Phone
+                      className="h-4 w-4 transition-transform duration-500 group-hover:rotate-12"
+                      strokeWidth={2.3}
+                    />
+                    {business.phone}
+                  </a>
+
+                  {helpHref && (
+                    <a
+                      href={helpHref}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1EBE5A] hover:shadow-lg hover:shadow-[#25D366]/25"
+                    >
+                      <MessageCircle className="h-4 w-4" strokeWidth={2.3} />
+                      WhatsApp
+                    </a>
+                  )}
+                </div>
               </div>
             </Reveal>
           </div>

@@ -11,6 +11,17 @@ export const business = {
   parent: 'Bharat Petroleum',
   phone: '080 4205 2762',
   phoneHref: 'tel:+918042052762',
+  /**
+   * WHATSAPP NUMBER NOT SUPPLIED — set this before launch.
+   *
+   * The listed number above is a Bengaluru landline and cannot receive WhatsApp,
+   * so it cannot be reused here. Put the team's mobile in international format:
+   * country code + number, digits only, no "+" or spaces. e.g. '919876543210'.
+   *
+   * While this is empty, every WhatsApp button is hidden rather than rendering a
+   * dead link — see `whatsappHref` in src/lib/contact.ts.
+   */
+  whatsapp: '',
   /* Bharat Gas national helpline (Urja WhatsApp booking) — printed on the showroom hoarding */
   helpline: '1800 22 4344',
   address: {

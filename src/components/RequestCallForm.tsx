@@ -1,6 +1,7 @@
-import { useState, type FormEvent } from 'react'
-import { ArrowRight, Check, Loader2 } from 'lucide-react'
+import { useRef, useState, type FormEvent } from 'react'
+import { ArrowRight, Check, Loader2, MessageCircle } from 'lucide-react'
 import { isDev, submitToNetlify } from '../lib/netlify'
+import { enquiryMessage, whatsappHref } from '../lib/contact'
 
 type Status = 'idle' | 'sending' | 'done' | 'error'
 
@@ -25,6 +26,25 @@ const fields = [
 
 export function RequestCallForm() {
   const [status, setStatus] = useState<Status>('idle')
+  const formRef = useRef<HTMLFormElement>(null)
+
+  /**
+   * Opens WhatsApp with whatever the visitor has typed so far. Deliberately not
+   * gated on validation — someone who has only entered a name should still be
+   * able to start a chat.
+   */
+  function openWhatsApp() {
+    const form = formRef.current
+    if (!form) return
+
+    const data = Object.fromEntries(
+      Array.from(new FormData(form).entries()).map(([key, value]) => [key, String(value)]),
+    )
+    const href = whatsappHref(enquiryMessage(data))
+    if (href) window.open(href, '_blank', 'noopener,noreferrer')
+  }
+
+  const whatsappEnabled = whatsappHref('') !== null
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -57,6 +77,7 @@ export function RequestCallForm() {
 
   return (
     <form
+      ref={formRef}
       name="request-a-call"
       method="POST"
       data-netlify="true"
@@ -88,7 +109,23 @@ export function RequestCallForm() {
           </label>
         ))}
 
-        <div className="flex items-end sm:col-span-2 lg:col-span-1">
+        <div className="flex items-end gap-2 sm:col-span-2 lg:col-span-1">
+          {/* Hidden entirely until a WhatsApp number is configured in site.ts */}
+          {whatsappEnabled && (
+            <button
+              type="button"
+              onClick={openWhatsApp}
+              title="Send this enquiry on WhatsApp"
+              className="group flex h-[42px] shrink-0 items-center justify-center gap-2 rounded-lg bg-[#25D366] px-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1EBE5A] hover:shadow-lg hover:shadow-[#25D366]/30 active:translate-y-0"
+            >
+              <MessageCircle
+                className="h-4 w-4 transition-transform duration-500 group-hover:scale-110"
+                strokeWidth={2.3}
+              />
+              <span className="lg:hidden">WhatsApp</span>
+            </button>
+          )}
+
           <button
             type="submit"
             disabled={status === 'sending' || status === 'done'}

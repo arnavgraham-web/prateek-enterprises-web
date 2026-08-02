@@ -9,6 +9,7 @@ import { Faq } from './components/Faq'
 import { Location } from './components/Location'
 import { Footer } from './components/Footer'
 import { ScrollProgress } from './components/ScrollProgress'
+import { WhatsAppFab } from './components/WhatsAppFab'
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
         <Location />
       </main>
       <Footer />
+      <WhatsAppFab />
     </>
   )
 }

@@ -43,8 +43,33 @@ is therefore declared a second time as a hidden static copy in [`index.html`](in
 which is what Netlify's build-time scanner registers. **If you add or rename a field in a
 React form, make the same change in `index.html`** or Netlify will silently drop it.
 
-Submissions land under **Forms** in the Netlify site dashboard. Add a notification email
-there (Site configuration → Forms → Form notifications) so enquiries reach an inbox.
+### Where submissions actually go
+
+Netlify stores them. There is no database and no file in this repo — submissions live in
+the Netlify dashboard under **Forms**, attached to whichever site the repo is deployed to.
+
+Two things to know before launch:
+
+- **Netlify sends no email by default.** Enquiries accumulate in a dashboard nobody opens
+  unless you turn notifications on: Site configuration → Forms → Form notifications → Add
+  notification → Email notification, one per form (`request-a-call`, `get-in-touch`).
+- **The free tier caps at 100 submissions/month.** Past that Netlify rejects submissions
+  rather than queueing them.
+
+### WhatsApp
+
+Set `business.whatsapp` in [`src/data/site.ts`](src/data/site.ts) to the team's **mobile**
+number in international format, digits only (e.g. `919876543210`). The listed landline
+cannot receive WhatsApp, so it cannot be reused.
+
+Until that field is filled in, every WhatsApp affordance — the button in the enquiry form,
+the one in the FAQ "Need more help?" card, and the floating action button — is hidden
+rather than rendering a dead link. Fill it in and all three appear.
+
+The enquiry-form button composes a message from whatever the visitor has typed, skipping
+blank fields, and opens WhatsApp in a new tab. It does not submit to Netlify, so a visitor
+who uses WhatsApp will not appear in the dashboard — that is intentional, since the
+conversation itself becomes the record.
 
 Running `npm run dev` has no Netlify backend, so the POST 404s. The handler treats that as
 success in dev and logs the payload to the console instead — see `src/lib/netlify.ts`.
