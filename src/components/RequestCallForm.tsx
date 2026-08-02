@@ -96,7 +96,11 @@ export function RequestCallForm() {
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[repeat(4,minmax(0,1fr))_auto]">
         {fields.map((field) => (
           <label key={field.name} className="group block">
-            <span className="mb-1.5 block text-[11px] font-medium uppercase tracking-wider text-ink-400 transition-colors duration-300 group-focus-within:text-brand-600">
+            {/* text-ink-700, not -400: this sits directly on the translucent
+                glass panel, which can be anything from dark road to bright
+                truck cab depending on scroll position — needs real contrast
+                of its own rather than relying on a consistent backdrop. */}
+            <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-ink-700 transition-colors duration-300 group-focus-within:text-brand-600">
               {field.label}
             </span>
             <input
@@ -105,7 +109,7 @@ export function RequestCallForm() {
               required
               autoComplete={field.autoComplete}
               placeholder={field.placeholder}
-              className="w-full rounded-lg border border-ink-200 bg-ink-100/70 px-3.5 py-2.5 text-sm text-ink-900 placeholder:text-ink-400 transition-all duration-300 hover:border-ink-400 focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-600/20"
+              className="w-full rounded-lg border border-ink-200 bg-white/90 px-3.5 py-2.5 text-sm text-ink-900 placeholder:text-ink-500 transition-all duration-300 hover:border-ink-400 focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-600/20"
             />
           </label>
         ))}
@@ -149,8 +153,8 @@ export function RequestCallForm() {
 
       <p
         aria-live="polite"
-        className={`mt-3 text-[11px] leading-relaxed transition-colors duration-300 ${
-          status === 'error' ? 'text-red-600' : 'text-ink-400'
+        className={`mt-3 text-[11px] font-medium leading-relaxed transition-colors duration-300 ${
+          status === 'error' ? 'text-red-700' : 'text-ink-700'
         }`}
       >
         {status === 'done'
